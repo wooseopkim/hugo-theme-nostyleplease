@@ -1,6 +1,8 @@
 {{ define "main" }}
 {{ partial "back_link.html" .}}
 
+<img src="{{ .Params.Cover }}" class="cover">
+
 <article>
     <p class="post-meta">
         <time datetime="{{ .Date }}">
