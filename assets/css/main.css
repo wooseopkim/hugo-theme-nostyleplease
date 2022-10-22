@@ -1,30 +1,24 @@
-// -------------- THEME SWITCHER -------------- //
-@mixin dark-appearance {
-  filter: invert(1);
+@media (prefers-color-scheme: dark) {
+  body {
+    filter: invert(1);
+    -webkit-font-smoothing: antialiased;
+  }
+
   img {
     filter: invert(1);
+  }
 
-    &.ioda { filter: invert(0); }
+  img.ioda {
+    filter: invert(0);
   }
 }
 
-body[a="dark"] { @include dark-appearance; }
-
-
-@media (prefers-color-scheme: dark) {
-  body[a="auto"] { @include dark-appearance; }
+html, body {
+  background: white;
 }
-// -------------------------------------------- //
 
-// bg color is also needed in html in order to
-// block body's background propagation
-// see: https://stackoverflow.com/a/61265706
-html, body { background: white; }
-
-html { height: 100%; }
-
-* {
-  font-family: 'Courier New', Courier, '돋움체', monospace;
+html {
+  height: 100%;
 }
 
 body {
@@ -49,24 +43,30 @@ article {
   flex-direction: column;
 }
 
-h2, h3, h4, h5, h6 { margin-top: 3rem; }
+h2, h3, h4, h5, h6 {
+  margin-top: 3rem;
+}
 
-hr { margin: 2rem 0; }
+hr {
+  margin: 2rem 0;
+}
 
 p {
   margin-top: 1rem;
   margin-bottom: 0;
 }
 
-article > h1 { margin: 0; }
+article > h1 {
+  margin: 0;
+}
 
 article > h1 + * {
   margin-top: 4rem;
 }
 
-li { margin: 0.4rem 0; }
-
-*:target { background: yellow; }
+li {
+  margin: 0.4rem 0;
+}
 
 .w {
   max-width: 640px;
@@ -80,16 +80,19 @@ li { margin: 0.4rem 0; }
 hr {
   text-align: center;
   border: 0;
+}
 
-  &:before { content: '/////' }
-  &:after { content: attr(data-content) '/////' }
+hr::before {
+  content: '//////////'
 }
 
 pre {
   padding: 1em;
 }
 
-table { width: 100%; }
+table {
+  width: 100%;
+}
 
 table, th, td {
   border: thin solid black;
@@ -104,19 +107,14 @@ code {
   font-size: 95%;
 }
 
-code.has-jax {
-  -webkit-font-smoothing: antialiased;
-  background: inherit !important;
-  border: none !important;
-  font-size: 100%;
-}
-
 blockquote {
   font-style: italic;
   border: thin solid black;
   padding: 1rem;
+}
 
-  p { margin: 0; }
+blockquote p {
+  margin: 0;
 }
 
 img {
@@ -144,4 +142,19 @@ article a.backlink {
 
 a.backlink {
   display: inline;
+}
+
+* {
+  font-family: '돋움체', 'Courier New', Courier, monospace;
+}
+
+*:target {
+  background: yellow;
+}
+
+code.has-jax {
+  -webkit-font-smoothing: antialiased;
+  background: inherit !important;
+  border: none !important;
+  font-size: 100%;
 }
