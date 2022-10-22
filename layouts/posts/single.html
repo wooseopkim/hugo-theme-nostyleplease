@@ -1,7 +1,21 @@
 {{ define "main" }}
 {{ partial "back_link.html" .}}
 
-<img src="{{ .Params.Cover }}" class="cover">
+{{- with .Params.Cover }}
+    {{ $src := . }}
+    {{ $cover := resources.Get $src }}
+    {{ if not $cover }}
+        {{ $cover = resources.GetRemote $src }}
+    {{ end }}
+    {{ with $cover }}
+        {{ with .Resize (printf "%dx%d webp q90" .Width .Height) }}
+            <picture>
+                <source type="image/webp" srcset="{{ .Permalink }}">
+                <img src="{{ $cover.Permalink }}" class="cover" alt="cover image">
+            </picture>
+        {{ end }}
+    {{ end }}
+{{ end -}}
 
 <article>
     <p class="post-meta">
