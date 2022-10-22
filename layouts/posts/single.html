@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{ partial "back_link.html" .}}
 
 {{- with .Params.Cover }}
     {{ $src := . }}
@@ -27,5 +26,6 @@
     <h1>{{ .Title }}</h1>
 
     {{ .Content }}
+    {{- partial "footer.html" -}}
 </article>
 {{ end }}
