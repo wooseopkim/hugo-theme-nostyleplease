@@ -33,13 +33,33 @@ body {
   overflow-wrap: break-word;
 }
 
-.post-meta { text-align: right; }
+.post-meta {
+  text-align: right;
+  position: absolute;
+  margin: 0;
+  right: 0;
+}
+
+article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
 
 h2, h3, h4, h5, h6 { margin-top: 3rem; }
 
 hr { margin: 2rem 0; }
 
-p { margin: 1rem 0; }
+p {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+article > h1 { margin: 0; }
+
+article > h1 + * {
+  margin-top: 4rem;
+}
 
 li { margin: 0.4rem 0; }
 
@@ -48,7 +68,7 @@ li { margin: 0.4rem 0; }
 .w {
   max-width: 640px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 25vh 2rem;
 }
 
 hr {
