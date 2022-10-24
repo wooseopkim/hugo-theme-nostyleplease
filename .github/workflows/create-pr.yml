@@ -27,7 +27,7 @@ jobs:
           git submodule update --remote 'themes/*'
           git checkout -b $BRANCH
           git add 'themes/*'
-          git commit -m $COMMIT_MESSAGE
+          git commit -m '$COMMIT_MESSAGE'
           git push --set-upstream origin $BRANCH
       - name: Create PR
         env:
