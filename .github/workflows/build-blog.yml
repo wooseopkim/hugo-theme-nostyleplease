@@ -1,0 +1,11 @@
+name: Trigger blog build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-blog:
+    runs-on: ubuntu-latest
+    uses: subdomains-wooseop-kim/blog/.github/workflows/build.yml@master
