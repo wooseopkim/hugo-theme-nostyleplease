@@ -13,4 +13,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh api repos/ORG/REPO/dispatches --raw-field event_type=update-theme
+          gh api repos/${{ github.repository_owner }}/blog/dispatches --raw-field event_type=update-theme
