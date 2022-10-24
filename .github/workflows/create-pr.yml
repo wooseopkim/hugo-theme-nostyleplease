@@ -26,7 +26,8 @@ jobs:
           git config user.email github-actions@github.com
           git submodule update --remote 'themes/*'
           git checkout -b $BRANCH
-          git commit -am $COMMIT_MESSAGE
+          git add 'themes/*'
+          git commit -m $COMMIT_MESSAGE
           git push --set-upstream origin $BRANCH
       - name: Create PR
         env:
