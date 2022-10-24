@@ -8,4 +8,9 @@ on:
 jobs:
   build-blog:
     runs-on: ubuntu-latest
-    uses: subdomains-wooseop-kim/blog/.github/workflows/build.yml@master
+    steps:
+      - name: Create repository dispatch event
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          gh api repos/ORG/REPO/dispatches --raw-field event_type=update-theme
