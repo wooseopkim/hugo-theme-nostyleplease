@@ -14,7 +14,7 @@
 
 
   <link rel="shortcut icon" type="image/x-icon" href="{{ $.Site.Params.favicon | relURL }}" />
-  {{ $main := resources.Get "css/main.css" }}
+  {{ $main := resources.Get "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $main.Permalink | relURL }}">
   {{ if .Params.mathjax }} {{ partial "mathjax.html" . }} {{ end }}
 </head>
