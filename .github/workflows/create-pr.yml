@@ -12,6 +12,7 @@ jobs:
       PARENT_REPO: ${{ github.repository_owner }}/blog
       BRANCH: theme/${{ github.sha }}
       COMMIT_MESSAGE: Bump theme (${{ github.sha }})
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,6 +20,7 @@ jobs:
           repository: ${{ env.PARENT_REPO }}
           submodules: true
           fetch-depth: 0
+          token: ${{ env.GH_TOKEN }}
       - name: Create new branch and push changes
         shell: bash
         run: |
@@ -27,10 +29,8 @@ jobs:
           git submodule update --remote 'themes/*'
           git checkout -b $BRANCH
           git add 'themes/*'
-          git commit -m '$COMMIT_MESSAGE'
+          git commit -m "$COMMIT_MESSAGE"
           git push --set-upstream origin $BRANCH
       - name: Create PR
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           gh pr create --repo $PARENT_REPO --head $BRANCH --fill --no-maintainer-edit --label automated
