@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Create repository dispatch event
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           gh api repos/${{ github.repository_owner }}/blog/dispatches --raw-field event_type=update-theme
