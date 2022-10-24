@@ -13,12 +13,14 @@ jobs:
       BRANCH: theme/${{ github.sha }}
       COMMIT_MESSAGE: Bump theme (${{ github.sha }})
     steps:
-      - name: Create new branch and push changes
+      - name: Checkout
         uses: actions/checkout@v3
         with:
           repository: ${{ env.PARENT_REPO }}
           submodules: true
           fetch-depth: 0
+      - name: Create new branch and push changes
+        shell: bash
         run: |
           git config user.name ${{ github.actor }}
           git config user.email 10593679+wooseopkim@users.noreply.github.com
