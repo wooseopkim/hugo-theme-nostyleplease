@@ -20,7 +20,7 @@ jobs:
           repository: ${{ env.PARENT_REPO }}
           submodules: true
           fetch-depth: 0
-          token: ${{ env.GH_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
       - name: Create new branch and push changes
         shell: bash
         run: |
