@@ -10,27 +10,31 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PARENT_REPO: ${{ github.repository_owner }}/blog
+      SUBMODULE_PATH: 'themes/nostyleplease'
       BRANCH: theme/${{ github.sha }}
-      COMMIT_MESSAGE: Bump theme (${{ github.sha }})
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      COMMIT_MESSAGE: Update theme (${{ github.sha }})
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           repository: ${{ env.PARENT_REPO }}
           submodules: true
-          fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN }}
+          fetch-depth: 1
+          token: ${{ secrets.GH_PAT }}
+
       - name: Create new branch and push changes
         shell: bash
         run: |
-          git config user.name ${{ github.actor }}
-          git config user.email 10593679+wooseopkim@users.noreply.github.com
-          git submodule update --remote 'themes/*'
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git submodule update --remote '${{ env.SUBMODULE_PATH }}'
           git checkout -b $BRANCH
-          git add 'themes/*'
+          git add '${{ env.SUBMODULE_PATH }}'
           git commit -m "$COMMIT_MESSAGE"
           git push --set-upstream origin $BRANCH
+
       - name: Create PR
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           gh pr create --repo $PARENT_REPO --head $BRANCH --fill --no-maintainer-edit --label automated
