@@ -18,4 +18,7 @@
   <link rel="stylesheet" href="{{ $main.Permalink | relURL }}">
   {{ if .Params.mathjax }} {{ partial "mathjax.html" . }} {{ end }}
   <script src="https://unpkg.com/tachyonjs@2.0.0/tachyon.min.js" type="module" crossorigin defer></script>
+  {{ if templates.Exists "partials/head_includes.html" }}
+    {{- partial "head_includes.html" . -}}
+  {{ end }}
 </head>
